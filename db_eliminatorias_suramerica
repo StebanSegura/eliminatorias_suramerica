@@ -1,0 +1,64 @@
+// Creación de la base de datos
+use eliminatorias_suramerica;
+
+// Creación de las colecciones
+db.createCollection("deportistas");
+db.createCollection("entrenadores");
+db.createCollection("arbitros");
+db.createCollection("encuentros");
+db.createCollection("resultados");
+db.createCollection("posiciones");
+
+// Inserción de datos en Deportistas
+db.deportistas.insertMany([
+    { _id: 1, nombre: "Lionel", apellido: "Messi", fechaNacimiento: "1987-06-24", posicion: "Delantero", equipo: "Argentina", goles: 10, tarjetas: { amarillas: 2, rojas: 0 } },
+    { _id: 2, nombre: "Neymar", apellido: "Jr.", fechaNacimiento: "1992-02-05", posicion: "Delantero", equipo: "Brasil", goles: 8, tarjetas: { amarillas: 1, rojas: 0 } },
+    { _id: 3, nombre: "James", apellido: "Rodríguez", fechaNacimiento: "1991-07-12", posicion: "Centrocampista", equipo: "Colombia", goles: 5, tarjetas: { amarillas: 3, rojas: 1 } },
+    { _id: 4, nombre: "Arturo", apellido: "Vidal", fechaNacimiento: "1987-05-22", posicion: "Centrocampista", equipo: "Chile", goles: 3, tarjetas: { amarillas: 4, rojas: 0 } },
+    { _id: 5, nombre: "Luis", apellido: "Suárez", fechaNacimiento: "1987-01-24", posicion: "Delantero", equipo: "Uruguay", goles: 7, tarjetas: { amarillas: 2, rojas: 0 } },
+]);
+
+// Inserción de datos en Entrenadores
+db.entrenadores.insertMany([
+    { _id: 1, nombre: "Eduardo", apellido: "Berizzo", fechaNacimiento: "1969-11-13", equipo: "Paraguay" },
+    { _id: 2, nombre: "Tite", apellido: "Silva", fechaNacimiento: "1961-05-25", equipo: "Brasil" },
+    { _id: 3, nombre: "Reinaldo", apellido: "Rueda", fechaNacimiento: "1957-04-16", equipo: "Colombia" },
+    { _id: 4, nombre: "Martín", apellido: "Lasarte", fechaNacimiento: "1961-11-27", equipo: "Chile" },
+    { _id: 5, nombre: "Óscar", apellido: "Tabárez", fechaNacimiento: "1947-03-03", equipo: "Uruguay" },
+]);
+
+// Inserción de datos en Árbitros
+db.arbitros.insertMany([
+    { _id: 1, nombre: "Wilmar", apellido: "Roldán", partidosDirigidos: 50, tarjetas: { amarillas: 30, rojas: 2 } },
+    { _id: 2, nombre: "Néstor", apellido: "Pitana", partidosDirigidos: 45, tarjetas: { amarillas: 25, rojas: 1 } },
+    { _id: 3, nombre: "Andrés", apellido: "Cunha", partidosDirigidos: 40, tarjetas: { amarillas: 20, rojas: 0 } },
+    { _id: 4, nombre: "Julio", apellido: "Bascuñán", partidosDirigidos: 35, tarjetas: { amarillas: 15, rojas: 1 } },
+    { _id: 5, nombre: "Esteban", apellido: "Ostojich", partidosDirigidos: 30, tarjetas: { amarillas: 10, rojas: 0 } },
+]);
+
+// Inserción de datos en Encuentros Deportivos
+db.encuentros.insertMany([
+    { _id: 1, fechaHora: ISODate("2023-01-15T20:00:00Z"), lugar: "Estadio Nacional", equipos: ["Argentina", "Brasil"], arbitro: 1, estado: "Programado" },
+    { _id: 2, fechaHora: ISODate("2023-01-16T18:30:00Z"), lugar: "Estadio Maracaná", equipos: ["Colombia", "Chile"], arbitro: 2, estado: "En Curso" },
+    { _id: 3, fechaHora: ISODate("2023-01-17T21:15:00Z"), lugar: "Estadio Centenario", equipos: ["Uruguay", "Paraguay"], arbitro: 3, estado: "Finalizado" },
+    // Otros encuentros...
+]);
+
+// Inserción de datos en Resultados
+db.resultados.insertMany([
+    { _id: 1, encuentro: 1, goles: { "Argentina": 2, "Brasil": 2 }, tarjetas: { amarillas: 3, rojas: 0 } },
+    { _id: 2, encuentro: 2, goles: { "Colombia": 1, "Chile": 0 }, tarjetas: { amarillas: 2, rojas: 0 } },
+    { _id: 3, encuentro: 3, goles: { "Uruguay": 3, "Paraguay": 1 }, tarjetas: { amarillas: 4, rojas: 1 } },
+    // Otros resultados...
+]);
+
+// Inserción de datos en Posiciones
+db.posiciones.insertMany([
+    { equipo: "Argentina", puntos: 1, golesFavor: 2, golesContra: 2, diferenciaGoles: 0 },
+    { equipo: "Brasil", puntos: 1, golesFavor: 2, golesContra: 2, diferenciaGoles: 0 },
+    { equipo: "Colombia", puntos: 3, golesFavor: 1, golesContra: 0, diferenciaGoles: 1 },
+    { equipo: "Chile", puntos: 0, golesFavor: 0, golesContra: 1, diferenciaGoles: -1 },
+    { equipo: "Uruguay", puntos: 3, golesFavor: 3, golesContra: 1, diferenciaGoles: 2 },
+    { equipo: "Paraguay", puntos: 0, golesFavor: 1, golesContra: 3, diferenciaGoles: -2 },
+    // Otros equipos y posiciones...
+]);
